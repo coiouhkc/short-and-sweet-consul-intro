@@ -8,9 +8,13 @@
 
 # Service discovery/ service registry
 
-See https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
-See https://www.baeldung.com/cs/service-discovery-microservices
-See https://dzone.com/articles/service-discovery-in-a-microservices-architecture
+See 
+
+* https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
+
+* https://www.baeldung.com/cs/service-discovery-microservices
+
+* https://dzone.com/articles/service-discovery-in-a-microservices-architecture
 
 ---
 
@@ -22,11 +26,13 @@ See https://www.consul.io/
 
 # Notable mentions
 
-See https://github.com/Netflix/eureka
+See 
 
-See https://zookeeper.apache.org
+* https://github.com/Netflix/eureka
 
-See etcd https://github.com/coreos/etcd
+* https://zookeeper.apache.org
+
+* https://github.com/coreos/etcd
 
 ---
 
@@ -34,7 +40,7 @@ See etcd https://github.com/coreos/etcd
 
 See https://www.osgi.org/
 
-TODO: small demo, job scheduling
+TODO: small demo
 
 See https://www.knopflerfish.org/releases/current/docs/javadoc/org/osgi/framework/BundleContext.html#registerService(java.lang.Class,%20S,%20java.util.Dictionary) and https://www.knopflerfish.org/releases/current/docs/javadoc/org/osgi/framework/BundleContext.html#getServiceReferences(java.lang.Class,%20java.lang.String)
 
@@ -42,13 +48,13 @@ See https://www.knopflerfish.org/releases/current/docs/javadoc/org/osgi/framewor
 
 # Consul demo (self-registration)
 
-TODO: small demo, job scheduling
+See [infra/docker-compose.yml](infra/docker-compose.yml) + [self/*](self/*)
 
 ---
 
 # Consul demo (3rd-party-registration, k8s)
 
-TODO: small demo, job scheduling
+TODO: small demo
 
 See https://github.com/hashicorp/consul-k8s/blob/main/control-plane/connect-inject/container_init.go
 
