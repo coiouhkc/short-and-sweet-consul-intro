@@ -48,7 +48,7 @@ See https://www.knopflerfish.org/releases/current/docs/javadoc/org/osgi/framewor
 
 # Consul demo (self-registration)
 
-See [infra/docker-compose.yml](infra/docker-compose.yml) + [self/*](self/*)
+See [infra/docker-compose.yml](self/infra/docker-compose.yml) + [self/*](self/*)
 
 ---
 
