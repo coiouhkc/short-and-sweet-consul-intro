@@ -13,6 +13,9 @@ import java.util.List;
 @ApplicationScoped
 public class AppLifecycleBean {
 
+    @ConfigProperty(name = "consul.enabled", defaultValue = "true")
+    boolean consulEnabled;
+
     @ConfigProperty(name = "consul.host", defaultValue = "localhost")
     String consulHost;
 
@@ -29,21 +32,25 @@ public class AppLifecycleBean {
     Integer advertisedPort;
 
     void onStart(@Observes StartupEvent ev) {
-        ConsulClient consulClient = new ConsulClient(consulHost, consulPort);
+        if (consulEnabled) {
+            ConsulClient consulClient = new ConsulClient(consulHost, consulPort);
 
-        NewService newService = new NewService();
-        newService.setId("color-service-" + color);
-        newService.setName("color-service");
-        newService.setTags(List.of("color-service", color));
-        newService.setAddress(advertisedHost);
-        newService.setPort(advertisedPort);
+            NewService newService = new NewService();
+            newService.setId("color-service-" + color);
+            newService.setName("color-service");
+            newService.setTags(List.of("color-service", color));
+            newService.setAddress(advertisedHost);
+            newService.setPort(advertisedPort);
 
-        consulClient.agentServiceRegister(newService);
+            consulClient.agentServiceRegister(newService);
+        }
     }
 
     void onStop(@Observes ShutdownEvent ev) {
-        ConsulClient consulClient = new ConsulClient(consulHost, consulPort);
+        if (consulEnabled) {
+            ConsulClient consulClient = new ConsulClient(consulHost, consulPort);
 
-        consulClient.agentServiceDeregister("color-service-" + color);
+            consulClient.agentServiceDeregister("color-service-" + color);
+        }
     }
 }
