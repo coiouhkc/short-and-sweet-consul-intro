@@ -65,3 +65,23 @@ See https://github.com/hashicorp/consul-k8s/blob/main/control-plane/connect-inje
 * https://quarkus.io/guides/stork
 * https://learn.hashicorp.com/tutorials/consul/kubernetes-minikube?in=consul/kubernetes
 * https://github.com/Ecwid/consul-api
+
+
+---
+
+# Consul REST API
+
+* http://localhost:8500/v1/catalog/services
+* http://localhost:8500/v1/health/service/consul?pretty
+
+---
+
+# Snippets
+
+```
+kubectl config view --raw > ~/.kube/config
+helm install --values helm-consul-values.yaml consul hashicorp/consul --create-namespace --namespace consul --version "0.43.0"
+kubectl run color-producer-red --image=bratuhia/color-producer:1.0.0 --env="CONSUL_ENABLED=false" --env="APP_COLOR=red" --dry-run=client -o yaml
+```
+
+---
