@@ -25,6 +25,9 @@ spec:
   template:
     metadata:
       creationTimestamp: null
+      annotations:
+        'consul.hashicorp.com/connect-inject': 'true'
+        'consul.hashicorp.com/service-tags': color-consumer
       labels:
         app: color-consumer
     spec:

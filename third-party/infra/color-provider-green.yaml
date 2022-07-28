@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: color-provider-red
+  name: color-provider-green
 spec:
   selector:
-    app: color-provider-red
+    app: color-provider-green
   ports:
     - port: 8080
       targetPort: 8080
@@ -15,32 +15,32 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: color-provider-red
-  name: color-provider-red
+    app: color-provider-green
+  name: color-provider-green
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: color-provider-red
+      app: color-provider-green
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
-      annotations:
-        'consul.hashicorp.com/connect-inject': 'true'
-        'consul.hashicorp.com/service-tags': color-provider,red
+      #annotations:
+      #  'consul.hashicorp.com/connect-inject': 'true'
+      #  'consul.hashicorp.com/service-tags': color-provider,green
       labels:
-        app: color-provider-red
+        app: color-provider-green
     spec:
       containers:
         - env:
             - name: CONSUL_ENABLED
               value: "false"
             - name: APP_COLOR
-              value: red
+              value: green
           image: localhost:32000/color-provider:1.0.0-SNAPSHOT
           imagePullPolicy: Always
-          name: color-provider-red
+          name: color-provider-green
           ports:
             - containerPort: 8080
           resources: { }

@@ -28,7 +28,7 @@ spec:
       creationTimestamp: null
       annotations:
         'consul.hashicorp.com/connect-inject': 'true'
-        'consul.hashicorp.com/service-tags': color-service,blue
+        'consul.hashicorp.com/service-tags': color-provider,blue
       labels:
         app: color-provider-blue
     spec:

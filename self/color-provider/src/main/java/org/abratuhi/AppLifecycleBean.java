@@ -36,9 +36,9 @@ public class AppLifecycleBean {
             ConsulClient consulClient = new ConsulClient(consulHost, consulPort);
 
             NewService newService = new NewService();
-            newService.setId("color-service-" + color);
-            newService.setName("color-service");
-            newService.setTags(List.of("color-service", color));
+            newService.setId("color-provider-" + color);
+            newService.setName("color-provider");
+            newService.setTags(List.of("color-provider", color));
             newService.setAddress(advertisedHost);
             newService.setPort(advertisedPort);
 
@@ -50,7 +50,7 @@ public class AppLifecycleBean {
         if (consulEnabled) {
             ConsulClient consulClient = new ConsulClient(consulHost, consulPort);
 
-            consulClient.agentServiceDeregister("color-service-" + color);
+            consulClient.agentServiceDeregister("color-provider-" + color);
         }
     }
 }

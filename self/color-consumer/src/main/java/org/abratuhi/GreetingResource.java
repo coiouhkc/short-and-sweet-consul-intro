@@ -38,7 +38,7 @@ public class GreetingResource {
         return consulClient.getCatalogServices(
                         CatalogServicesRequest.newBuilder().build()
                 )
-                .getValue().entrySet().stream().filter(stringListEntry -> stringListEntry.getValue().contains("color-service"))
+                .getValue().entrySet().stream().filter(stringListEntry -> stringListEntry.getValue().contains("color-provider"))
                 .flatMap(stringListEntry -> consulClient.getCatalogService(stringListEntry.getKey(), CatalogServiceRequest.newBuilder().build()).getValue().stream())
                 .map(this::getColor)
                 .collect(Collectors.toList());
