@@ -4,6 +4,7 @@ import com.ecwid.consul.v1.ConsulClient;
 import com.ecwid.consul.v1.catalog.CatalogServiceRequest;
 import com.ecwid.consul.v1.catalog.CatalogServicesRequest;
 import com.ecwid.consul.v1.catalog.model.CatalogService;
+import lombok.extern.jbosslog.JBossLog;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.ws.rs.GET;
@@ -18,6 +19,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@JBossLog
 @Path("/colors")
 public class GreetingResource {
 
@@ -43,6 +45,12 @@ public class GreetingResource {
     }
 
     private String getColor(CatalogService service) {
+        log.infof(
+                "Getting color from service %s:%d",
+                service.getServiceAddress(),
+                service.getServicePort()
+        );
+
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://" + service.getServiceAddress() + ":" + service.getServicePort() + "/color"))
                 .GET()

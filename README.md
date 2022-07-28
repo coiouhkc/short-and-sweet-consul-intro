@@ -81,6 +81,7 @@ See https://github.com/hashicorp/consul-k8s/blob/main/control-plane/connect-inje
 ```
 kubectl config view --raw > ~/.kube/config
 helm install --values helm-consul-values.yaml consul hashicorp/consul --create-namespace --namespace consul --version "0.43.0"
+kubectl exec --stdin --tty consul-server-0 --namespace consul -- /bin/sh
 kubectl run color-producer-red --image=bratuhia/color-producer:1.0.0 --env="CONSUL_ENABLED=false" --env="APP_COLOR=red" --dry-run=client -o yaml
 ```
 

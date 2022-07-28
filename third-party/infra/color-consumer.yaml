@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: color-consumer
+spec:
+  selector:
+    app: color-consumer
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: color-consumer
+  name: color-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: color-consumer
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: color-consumer
+    spec:
+      containers:
+        - env:
+            - name: CONSUL_HOST
+              value: consul-server.consul.svc.cluster.local
+            - name: CONSUL_PORT
+              value: "8500"
+          image: localhost:32000/color-consumer:1.0.0-SNAPSHOT
+          imagePullPolicy: Always
+          name: color-consumer
+          ports:
+            - containerPort: 8080
+          resources: { }
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+status: {}
